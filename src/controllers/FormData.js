@@ -3,6 +3,88 @@
 import db from "../models"
 
 
+const fetchAllUsesrs = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM users`)
+        .then((result) => {
+            res.json({
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+}
+
+const fetchUser = (req, res) => {
+    const { id } = req.query
+    db.sequelize.query(
+        `SELECT * FROM users WHERE id = ${id}`)
+        .then((result) => {
+            res.json({
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+}
+const updateUser = (req, res) => {
+    const { fullName,
+        phone,
+        email,
+        address,
+        nin,
+        password } = req.body
+    const { id } = req.query
+    db.sequelize.query(
+        `UPDATE users SET fullName="${fullName}",phone="${phone}",email="${email}",address="${address}",nin=${nin},password="${password}" 
+        WHERE id = ${id}`)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+
+}
+
+const deleteUser = (req, res) => {
+    const { id } = req.body
+    console.log(req.body)
+    db.sequelize.query(
+        `DELETE FROM users WHERE id = ${id}`)
+        .then((result) => {
+            res.json({
+                success: true,
+                msg: "post success",
+                result
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(500).json({
+                err
+            })
+        })
+}
+
 //////////////////////POST/////////////////////////////////
 const postMissingPerson = (req, res) => {
 
@@ -15,28 +97,41 @@ const postMissingPerson = (req, res) => {
     } = req.body;
     console.log(req.body);
 
-    db.query(
+    db.sequelize.query(
         `INSERT INTO missingperson(fullName, address, phone, lastSeen, description) VALUES 
-    ("${fullName}", "${address}", "${phone}","${lastSeen}", "${description}")`,
-        (err, results) => {
+    ("${fullName}", "${address}", "${phone}","${lastSeen}", "${description}")`)
+        .then((result) => {
             res.json({
-                msg: 'post success'
-            });
-        }
-    );
+                success: true,
+                msg: "post success",
+                result
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
 }
 ///////////////////GET///////////////////////////
- const fetchMissingPerson = (req, res) => {
-    db.query(
-        `SELECT * FROM missingperson`,
-        (err, result) => {
+const fetchMissingPerson = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM missingperson`)
+        .then((result) => {
             res.json({
-                msg: 'post success',
-                // result:result[0]
-                result
-            });
-        }
-    );
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+    // console.log(req.params)
 }
 
 
@@ -45,7 +140,7 @@ const postMissingPerson = (req, res) => {
 
 
 ///////////////////////////////////////////////////////
-const postHorrificIncident  = (req, res) => {
+const postHorrificIncident = (req, res) => {
 
     const {
         incidentName,
@@ -54,32 +149,46 @@ const postHorrificIncident  = (req, res) => {
     } = req.body;
     console.log(req.body);
 
-    db.query(
+    db.sequelize.query(
         `INSERT INTO horrificincident(incidentName, incidentAddress,  incidentDescription) VALUES 
-    ("${incidentName}", "${incidentAddress}", "${incidentDescription}")`,
-        (err, results) => {
+    ("${incidentName}", "${incidentAddress}", "${incidentDescription}")`)
+        .then((result) => {
             res.json({
-                msg: 'post success'
-            });
-        }
-    );
+                success: true,
+                msg: "post success",
+                result
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+
+
 }
 ///////////////////GET///////////////////////////
- const fetchHorrificIncident = (req, res) => {
-    db.query(
-        `SELECT * FROM horrificincident`,
-        (err, result) => {
+const fetchHorrificIncident = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM horrificincident`)
+        .then((result) => {
             res.json({
-                msg: 'post success',
-                // result:result[0]
-                result
-            });
-        }
-    );
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
 }
 
 ///////////////////////////////////////////////////////
- const postMissingVehicle = (req, res) => {
+const postMissingVehicle = (req, res) => {
 
     const {
         vehicleName,
@@ -90,37 +199,53 @@ const postHorrificIncident  = (req, res) => {
     } = req.body;
     console.log(req.body);
 
-    db.query(
+    db.sequelize.query(
         `INSERT INTO missingvehicle(vehicleName, vehicleModel,  vehiclePlateNo, lastSeen, description) VALUES 
-    ("${vehicleName}", "${vehicleModel}", "${vehiclePlateNo}", "${lastSeen}", "${description}")`,
-        (err, results) => {
+    ("${vehicleName}", "${vehicleModel}", "${vehiclePlateNo}", "${lastSeen}", "${description}")`)
+        .then((result) => {
             res.json({
-                msg: 'post success'
-            });
-        }
-    );
+                success: true,
+                msg: "post success",
+                result
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
 }
 ///////////////////GET///////////////////////////
-const fetchMissingVehicle  = (req, res) => {
-    db.query(
-        `SELECT * FROM missingvehicle`,
-        (err, result) => {
+const fetchMissingVehicle = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM missingvehicle`)
+        .then((result) => {
             res.json({
-                msg: 'post success',
-                // result:result[0]
-                result
-            });
-        }
-    );
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
 }
 
 
 
 export {
-    postMissingPerson, 
-    fetchMissingPerson, 
+    postMissingPerson,
+    fetchMissingPerson,
     postHorrificIncident,
-    fetchHorrificIncident, 
-    postMissingVehicle, 
-    fetchMissingVehicle
+    fetchHorrificIncident,
+    postMissingVehicle,
+    fetchMissingVehicle,
+    fetchAllUsesrs,
+    fetchUser,
+    updateUser,
+    deleteUser
 }
