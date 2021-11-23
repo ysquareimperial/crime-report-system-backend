@@ -94,12 +94,13 @@ const postMissingPerson = (req, res) => {
         phone,
         lastSeen,
         description,
+        email
     } = req.body;
     console.log(req.body);
 
     db.sequelize.query(
-        `INSERT INTO missingperson(fullName, address, phone, lastSeen, description) VALUES 
-    ("${fullName}", "${address}", "${phone}","${lastSeen}", "${description}")`)
+        `INSERT INTO missingperson(fullName, address, phone, lastSeen, description, email) VALUES 
+    ("${fullName}", "${address}", "${phone}","${lastSeen}", "${description}", "${email}")`)
         .then((result) => {
             res.json({
                 success: true,
@@ -116,8 +117,9 @@ const postMissingPerson = (req, res) => {
 }
 ///////////////////GET///////////////////////////
 const fetchMissingPerson = (req, res) => {
+    const {email} = req.query
     db.sequelize.query(
-        `SELECT * FROM missingperson`)
+        `SELECT * FROM missingperson WHERE email = "${email}"`)
         .then((result) => {
             res.json({
                 success: true,
@@ -145,13 +147,15 @@ const postHorrificIncident = (req, res) => {
     const {
         incidentName,
         incidentAddress,
-        incidentDescription
+        incidentDescription,
+        incidentDate,
+        email
     } = req.body;
     console.log(req.body);
 
     db.sequelize.query(
-        `INSERT INTO horrificincident(incidentName, incidentAddress,  incidentDescription) VALUES 
-    ("${incidentName}", "${incidentAddress}", "${incidentDescription}")`)
+        `INSERT INTO horrificincident(incidentName, incidentAddress,  incidentDescription, incidentDate, email) VALUES 
+    ("${incidentName}", "${incidentAddress}", "${incidentDescription}", "${incidentDate}","${email}")`)
         .then((result) => {
             res.json({
                 success: true,
@@ -170,8 +174,9 @@ const postHorrificIncident = (req, res) => {
 }
 ///////////////////GET///////////////////////////
 const fetchHorrificIncident = (req, res) => {
+    const {email} = req.query
     db.sequelize.query(
-        `SELECT * FROM horrificincident`)
+        `SELECT * FROM horrificincident WHERE email = "${email}"`)
         .then((result) => {
             res.json({
                 success: true,
@@ -195,13 +200,14 @@ const postMissingVehicle = (req, res) => {
         vehicleModel,
         vehiclePlateNo,
         lastSeen,
-        description
+        description,
+        email
     } = req.body;
     console.log(req.body);
 
     db.sequelize.query(
-        `INSERT INTO missingvehicle(vehicleName, vehicleModel,  vehiclePlateNo, lastSeen, description) VALUES 
-    ("${vehicleName}", "${vehicleModel}", "${vehiclePlateNo}", "${lastSeen}", "${description}")`)
+        `INSERT INTO missingvehicle(vehicleName, vehicleModel,  vehiclePlateNo, lastSeen, description, email) VALUES 
+    ("${vehicleName}", "${vehicleModel}", "${vehiclePlateNo}", "${lastSeen}", "${description}", "${email}")`)
         .then((result) => {
             res.json({
                 success: true,
@@ -218,8 +224,9 @@ const postMissingVehicle = (req, res) => {
 }
 ///////////////////GET///////////////////////////
 const fetchMissingVehicle = (req, res) => {
+    const {email} = req.query
     db.sequelize.query(
-        `SELECT * FROM missingvehicle`)
+        `SELECT * FROM missingvehicle WHERE email = "${email}"`)
         .then((result) => {
             res.json({
                 success: true,
