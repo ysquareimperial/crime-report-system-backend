@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2021 at 05:42 PM
+-- Generation Time: Nov 23, 2021 at 04:43 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -34,15 +34,18 @@ CREATE TABLE `horrificincident` (
   `incidentAddress` varchar(200) NOT NULL,
   `incidentDescription` varchar(500) NOT NULL,
   `incidentImage` varchar(500) NOT NULL,
-  `email` varchar(200) NOT NULL
+  `email` varchar(200) NOT NULL,
+  `incidentDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `horrificincident`
 --
 
-INSERT INTO `horrificincident` (`id`, `incidentName`, `incidentAddress`, `incidentDescription`, `incidentImage`, `email`) VALUES
-(4, 'Accident', 'Sokoto', 'rtyhuj', '', '');
+INSERT INTO `horrificincident` (`id`, `incidentName`, `incidentAddress`, `incidentDescription`, `incidentImage`, `email`, `incidentDate`) VALUES
+(10, 'Car Accident', 'Zaria, Rd, Kano', 'Accident occurred in Zaria Road, Kano ', '', 'ysquare.theimperial@gmail.com', '0000-00-00'),
+(11, 'Fire Outbreak', 'Abuja', 'Caused by cooking gas', '', 'mustpha@gmai.com', '0000-00-00'),
+(12, 'Fire Outbreak', 'Sokoto', 'Fire Fire Fire', '', 'mustpha@gmai.com', '2021-11-04');
 
 -- --------------------------------------------------------
 
@@ -66,9 +69,8 @@ CREATE TABLE `missingperson` (
 --
 
 INSERT INTO `missingperson` (`id`, `fullName`, `address`, `phone`, `lastSeen`, `description`, `personImage`, `email`) VALUES
-(2, 'Yasir', 'Sokoto', '134', '2021-09-29', 'he was lost yesterday', '', ''),
-(5, 'Muhd', 'Abuja', '12345678', '2021-10-06', 'get lost on his to the club', '', ''),
-(6, '', '', '', '0000-00-00', '', '', '');
+(22, 'Musa', 'Kano', '09018661696', '2021-11-02', 'Tall black guy.', '', 'ysquare.theimperial@gmail.com'),
+(23, 'Kabiru', 'Abuja', '191919191', '2021-11-02', 'Tall fat guy', '', 'mustpha@gmai.com');
 
 -- --------------------------------------------------------
 
@@ -82,15 +84,17 @@ CREATE TABLE `missingvehicle` (
   `vehicleModel` varchar(100) NOT NULL,
   `vehiclePlateNo` varchar(100) NOT NULL,
   `lastSeen` date NOT NULL,
-  `description` varchar(500) NOT NULL
+  `description` varchar(500) NOT NULL,
+  `email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `missingvehicle`
 --
 
-INSERT INTO `missingvehicle` (`id`, `vehicleName`, `vehicleModel`, `vehiclePlateNo`, `lastSeen`, `description`) VALUES
-(2, 'Honda', 'Accord', '1020', '2021-10-05', 'Black');
+INSERT INTO `missingvehicle` (`id`, `vehicleName`, `vehicleModel`, `vehiclePlateNo`, `lastSeen`, `description`, `email`) VALUES
+(8, 'Honda ', 'Accord 2020', 'AH-34R-11', '2021-11-10', 'Black Honda Accord', 'ysquare.theimperial@gmail.com'),
+(9, 'Mercedes', 'C300 2020', 'WE-122D-1DD', '2021-11-01', 'Black C300', 'mustpha@gmai.com');
 
 -- --------------------------------------------------------
 
@@ -105,19 +109,17 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `nin` int(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `role` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fullName`, `phone`, `email`, `address`, `nin`, `password`) VALUES
-(5, 'Yasir', '+234901866', 'ysquare.theimperial@hotmail.com', 'Sokoto', 2147483647, '123'),
-(14, '', '', '', '', 0, ''),
-(15, 'Yasir Ado', '234901866', 'ysquare.theimperial@hotmail.com1', 'Kano State', 2147483647, '123'),
-(16, 'now', '12345', 'now@gmail.com', 'adress me', 123456789, '123'),
-(17, 'ne', '111', 'ne@gmail.com', 'ne.me', 12121, '123');
+INSERT INTO `users` (`id`, `fullName`, `phone`, `email`, `address`, `nin`, `password`, `role`) VALUES
+(15, 'Yasir Ado Hassan', '09018661696', 'ysquare.theimperial@gmail.com', 'Kano', 2147483647, '123', ''),
+(17, 'Mohammed Almustapha Zakari', '07012345678', 'mustpha@gmai.com', 'Abuja', 2147483647, '123', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -155,25 +157,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `horrificincident`
 --
 ALTER TABLE `horrificincident`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `missingperson`
 --
 ALTER TABLE `missingperson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `missingvehicle`
 --
 ALTER TABLE `missingvehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
