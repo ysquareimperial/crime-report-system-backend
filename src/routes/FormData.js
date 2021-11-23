@@ -8,7 +8,10 @@ import {
     fetchAllUsesrs,
     fetchUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    AllMissingPerson,
+    AllHorrificIncident,
+    AllMissingVehicle
 
 } from "../controllers/FormData"
 
@@ -24,4 +27,7 @@ module.exports = (app) => {
     app.get('/get-user/new', fetchUser)
     app.put('/update-user/new', updateUser)
     app.delete('/delete-user/new', deleteUser)
+    app.get('/all_missingperson_get', AllMissingPerson)
+    app.get('/all_horrificincident_get', AllHorrificIncident)
+    app.get('/all_missingvehicle_get', AllMissingVehicle)
 }

@@ -136,6 +136,63 @@ const fetchMissingPerson = (req, res) => {
     // console.log(req.params)
 }
 
+const AllMissingPerson = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM missingperson`)
+        .then((result) => {
+            res.json({
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+    // console.log(req.params)
+}
+
+const AllHorrificIncident = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM horrificincident`)
+        .then((result) => {
+            res.json({
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+    // console.log(req.params)
+}
+
+const AllMissingVehicle = (req, res) => {
+    db.sequelize.query(
+        `SELECT * FROM missingvehicle`)
+        .then((result) => {
+            res.json({
+                success: true,
+                msg: "post success",
+                result: result[0]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.json({
+                err
+            })
+        })
+    // console.log(req.params)
+}
+
 
 
 
@@ -254,5 +311,8 @@ export {
     fetchAllUsesrs,
     fetchUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    AllMissingPerson,
+    AllHorrificIncident,
+    AllMissingVehicle
 }
